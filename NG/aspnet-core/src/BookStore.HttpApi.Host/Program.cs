@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 
-namespace Acme.BookStore
+namespace BookStore
 {
     public class Program
     {
@@ -29,13 +29,13 @@ namespace Acme.BookStore
 
             try
             {
-                Log.Information("Starting Acme.BookStore.IdentityServer.");
+                Log.Information("Starting BookStore.HttpApi.Host.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Acme.BookStore.IdentityServer terminated unexpectedly!");
+                Log.Fatal(ex, "Host terminated unexpectedly!");
                 return 1;
             }
             finally
@@ -53,7 +53,7 @@ namespace Acme.BookStore
                         serverOptions.Listen(IPAddress.Any, 44301, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                            listenOptions.UseHttps("../../../getabp.net.pfx");
+                            listenOptions.UseHttps("../../../../getabp.net.pfx");
                         });
                     });
                     webBuilder.UseStartup<Startup>();

@@ -53,7 +53,7 @@ namespace Acme.BookStore
                         serverOptions.Listen(IPAddress.Any, 44302, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                            listenOptions.UseHttps("getabp.net.pfx");
+                            listenOptions.UseHttps("../../../getabp.net.pfx");
                         });
                     });
                     webBuilder.UseStartup<Startup>();

@@ -73,41 +73,43 @@ namespace Acme.BookStore
 
         protected override Task ValidateAllowedCorsOriginsAsync(ClientConfigurationValidationContext context)
         {
-            if (context.Client.AllowedCorsOrigins?.Any() == true)
-            {
-                foreach (var origin in context.Client.AllowedCorsOrigins)
-                {
-                    var fail = true;
-
-                    if (!string.IsNullOrWhiteSpace(origin) && Uri.TryCreate(origin, UriKind.Absolute, out var uri))
-                    {
-                        if (uri.AbsolutePath == "/" && !origin.EndsWith("/"))
-                        {
-                            fail = false;
-                        }
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(origin) && origin.Contains("{0}"))
-                    {
-                        fail = false;
-                    }
-
-                    if (fail)
-                    {
-                        if (!string.IsNullOrWhiteSpace(origin))
-                        {
-                            context.SetError($"AllowedCorsOrigins contains invalid origin: {origin}");
-                        }
-                        else
-                        {
-                            context.SetError($"AllowedCorsOrigins contains invalid origin. There is an empty value.");
-                        }
-                        return Task.CompletedTask;
-                    }
-                }
-            }
-
-            return Task.CompletedTask;
+            context.Client.AllowedCorsOrigins.RemoveAll(x => x.Contains("{0}", StringComparison.OrdinalIgnoreCase));
+            return base.ValidateAllowedCorsOriginsAsync(context);
+            // if (context.Client.AllowedCorsOrigins?.Any() == true)
+            // {
+            //     foreach (var origin in context.Client.AllowedCorsOrigins)
+            //     {
+            //         var fail = true;
+            //
+            //         if (!string.IsNullOrWhiteSpace(origin) && Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+            //         {
+            //             if (uri.AbsolutePath == "/" && !origin.EndsWith("/"))
+            //             {
+            //                 fail = false;
+            //             }
+            //         }
+            //
+            //         if (!string.IsNullOrWhiteSpace(origin) && origin.Contains("{0}"))
+            //         {
+            //             fail = false;
+            //         }
+            //
+            //         if (fail)
+            //         {
+            //             if (!string.IsNullOrWhiteSpace(origin))
+            //             {
+            //                 context.SetError($"AllowedCorsOrigins contains invalid origin: {origin}");
+            //             }
+            //             else
+            //             {
+            //                 context.SetError($"AllowedCorsOrigins contains invalid origin. There is an empty value.");
+            //             }
+            //             return Task.CompletedTask;
+            //         }
+            //     }
+            // }
+            //
+            // return Task.CompletedTask;
         }
     }
 }

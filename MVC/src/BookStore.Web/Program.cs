@@ -53,7 +53,7 @@ namespace BookStore.Web
                         serverOptions.Listen(IPAddress.Parse("127.0.0.1"), 443, listenOptions =>
                         {
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-                            listenOptions.UseHttps("getabp.net.pfx");
+                            listenOptions.UseHttps("../../../getabp.net.pfx");
                         });
                     });
                     webBuilder.UseStartup<Startup>();
