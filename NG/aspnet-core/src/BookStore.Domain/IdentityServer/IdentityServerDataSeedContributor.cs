@@ -160,9 +160,7 @@ namespace BookStore.IdentityServer
                     corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
                 );
             }
-            
-            
-            
+
             // Swagger Client
             var swaggerClientId = configurationSection["BookStore_Swagger:ClientId"];
             if (!swaggerClientId.IsNullOrWhiteSpace())

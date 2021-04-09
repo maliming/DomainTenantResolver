@@ -25,6 +25,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
+using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
@@ -52,6 +53,7 @@ namespace Acme.BookStore
             var configuration = context.Services.GetConfiguration();
 
             context.Services.AddAbpStrictRedirectUriValidator();
+            context.Services.AddAbpClientConfigurationValidator();
             Configure<AbpTenantResolveOptions>(options =>
             {
                 options.AddDomainTenantResolver("{0}.ids.getabp.net:44301");

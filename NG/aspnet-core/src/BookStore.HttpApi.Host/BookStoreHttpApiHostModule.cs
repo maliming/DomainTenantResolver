@@ -55,7 +55,8 @@ namespace BookStore
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-            context.Services.AddAbpStrictRedirectUriValidatorPatch();
+            context.Services.AddAbpStrictRedirectUriValidator();
+            context.Services.AddAbpClientConfigurationValidator();
             Configure<AbpTenantResolveOptions>(options =>
             {
                 options.AddDomainTenantResolver("{0}.api.getabp.net:44301");
