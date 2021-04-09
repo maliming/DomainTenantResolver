@@ -1,5 +1,8 @@
 # DomainTenantResolver
 
+
+> Please wait for the official version of abp 4.3.
+
 ## MVC
 
 https://*.getabp.net/
