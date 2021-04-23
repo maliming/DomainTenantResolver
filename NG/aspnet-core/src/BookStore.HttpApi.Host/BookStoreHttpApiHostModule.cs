@@ -57,6 +57,7 @@ namespace BookStore
 
             context.Services.AddAbpStrictRedirectUriValidator();
             context.Services.AddAbpClientConfigurationValidator();
+            context.Services.AddAbpWildcardSubdomainCorsPolicyService();
             Configure<AbpTenantResolveOptions>(options =>
             {
                 options.AddDomainTenantResolver("{0}.api.getabp.net:44301");

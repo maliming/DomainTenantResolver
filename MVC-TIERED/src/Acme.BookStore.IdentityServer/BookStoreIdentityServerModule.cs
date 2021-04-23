@@ -54,6 +54,7 @@ namespace Acme.BookStore
 
             context.Services.AddAbpStrictRedirectUriValidator();
             context.Services.AddAbpClientConfigurationValidator();
+            context.Services.AddAbpWildcardSubdomainCorsPolicyService();
             Configure<AbpTenantResolveOptions>(options =>
             {
                 options.AddDomainTenantResolver("{0}.ids.getabp.net:44301");
